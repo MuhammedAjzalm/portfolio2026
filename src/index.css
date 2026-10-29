@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+  --color-acid: #d7ff3e;
+  --color-ink: #0a0a0a;
+  --font-display: "Mona Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Mona Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Type system — Mona Sans, as used on landonorris.com */
+.font-display {
+  font-weight: 700;
+  font-variation-settings: "wght" 700, "wdth" 93;
+}
+
+.hero-headline {
+  font-variation-settings: "wght" 820, "wdth" 87;
+  letter-spacing: -0.045em;
+  line-height: 0.84;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: #0a0a0a;
+  color: #f5f5f0;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+@media (pointer: fine) {
+  .custom-cursor-scope,
+  .custom-cursor-scope a,
+  .custom-cursor-scope button {
+    cursor: none;
+  }
+}
+
+::selection {
+  background: #d7ff3e;
+  color: #0a0a0a;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #d7ff3e;
+  border-radius: 10px;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 2px #d7ff3e;
+  color: transparent;
+}
+
+.text-stroke-white {
+  -webkit-text-stroke: 1.5px rgba(245, 245, 240, 0.6);
+  color: transparent;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 22s linear infinite;
+}
+
+.animate-marquee-slow {
+  animation: marquee 38s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee 26s linear infinite reverse;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+.noise::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Hero — desktop portrait fills the space above the ticker */
+@media (min-width: 1024px) {
+  .hero-portrait {
+    width: min(72vw, calc(140.2vh - 252px - 14.72vw));
+    max-width: 1100px;
+  }
+}
+
+/* Hero — compact layout for phones held in landscape */
+@media (max-height: 520px) and (orientation: landscape) and (max-width: 1023px) {
+  .hero-section {
+    padding-top: 4.5rem;
+  }
+  .hero-portrait {
+    width: min(44vh, 40vw);
+    max-width: 300px;
+    margin-top: -8vh;
+  }
+  .hero-headline {
+    font-size: clamp(2.2rem, 7vw, 5rem);
+  }
+  .hero-lower {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 33%;
+    margin-top: 0;
+    padding-bottom: 0;
+    align-items: flex-start;
+  }
+  .hero-copy {
+    max-width: 180px;
+  }
+  .hero-availability {
+    display: none;
+  }
+}
